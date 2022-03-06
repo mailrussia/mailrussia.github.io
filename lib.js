@@ -2,11 +2,12 @@ const axios = require('axios');
 const fetch = require('node-fetch');
 const emailExistence = require('email-existence');
 const fs = require('fs');
+const credentials = require('./credentials.json');
 
 function getAxiosSearchConfig(lat,lon,radius,type) {
     return {
         method: 'get',
-        url: `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat}%2C${lon}&radius=${radius}&type=${type}&key=AIzaSyB8XcwWkd41CaFPu5O1P8tbDb4YgJicJ5o`,
+        url: `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat}%2C${lon}&radius=${radius}&type=${type}&key=${credentials.key}`,
         headers: {}
     }
 }
@@ -14,7 +15,7 @@ function getAxiosSearchConfig(lat,lon,radius,type) {
 function getAxiosPlaceConfig(placeId) {
     return {
         method: 'get',
-        url: `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=place_id%2Ctypes%2Cwebsite%2Cname%2Cgeometry%2Cformatted_phone_number&key=AIzaSyB8XcwWkd41CaFPu5O1P8tbDb4YgJicJ5o`,
+        url: `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=place_id%2Ctypes%2Cwebsite%2Cname%2Cgeometry%2Cformatted_phone_number&key=${credentials.key}`,
         headers: { }
     };
 }
